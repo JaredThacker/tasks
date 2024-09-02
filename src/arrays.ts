@@ -5,19 +5,12 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
-    const [first, last] = [0, -1].map((i) => numbers.at(i));
-    const newArr: number[] = [];
-
-    if (numbers.length === 1) {
-        newArr.push(first as number);
-        newArr.push(last as number);
-    } else if (numbers.length > 1) {
-        newArr.push(first as number);
-        newArr.push(last as number);
-    } else {
-        return newArr;
+    if (numbers.length === 0) {
+        return [];
     }
-    return newArr;
+    const first = numbers[0];
+    const last = numbers[numbers.length - 1];
+    return numbers.length === 1 ? [first, first] : [first, last];
 }
 
 /**
@@ -53,13 +46,12 @@ export function stringsToIntegers(numbers: string[]): number[] {
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
-    const newArr: string[] = [...amounts];
-    newArr.map((eachString: string): string => eachString.replaceAll("$", ""));
-    const asInt: number[] = newArr.map((eachString: string): number =>
-        parseInt(eachString),
-    );
-    const filtered: number[] = asInt.filter((value) => !Number.isNaN(value));
-    return filtered;
+    return amounts
+        .map((eachString: string): string => eachString.replaceAll("$", ""))
+        .map((eachString: string): number => {
+            const parsed = parseInt(eachString);
+            return Number.isNaN(parsed) ? 0 : parsed;
+        });
 };
 
 /**
@@ -102,6 +94,8 @@ export function allRGB(colors: string[]): boolean {
                 eachColor === "blue" ||
                 eachColor === "green",
         );
+    } else if (colors.length === 0) {
+        return true;
     } else {
         return false;
     }
