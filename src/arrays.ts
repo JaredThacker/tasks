@@ -157,9 +157,13 @@ export function injectPositive(values: number[]): number[] {
             (value: number): boolean => value < 0,
         );
 
-        const sum = values.reduce((currentTotal: number, value: number, i) => {
-            return i !== firstNegativeIndex ? currentTotal + value : 0;
-        });
+        const slicedArr = newArr.slice(0, firstNegativeIndex);
+
+        const sum = slicedArr.reduce(
+            (currentTotal: number, eachNum: number): number =>
+                currentTotal + eachNum,
+            0,
+        );
 
         newArr.splice(firstNegativeIndex + 1, 0, sum);
 
