@@ -94,6 +94,8 @@ export function allRGB(colors: string[]): boolean {
                 eachColor === "blue" ||
                 eachColor === "green",
         );
+    } else if (colors.length === 0) {
+        return true;
     } else {
         return false;
     }
