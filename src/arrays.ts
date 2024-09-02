@@ -113,22 +113,24 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    if (addends.length == 1) {
-        const strRep = addends.map(
-            (num: number): string => num.toString() + "=" + num.toString(),
+    if (addends.length > 1) {
+        const sum = addends.reduce(
+            (currentTotal: number, eachNum: number): number =>
+                currentTotal + eachNum,
+            0,
         );
-        return strRep.toString();
+        const newArr = addends.map((eachNum: number): string =>
+            eachNum.toString(),
+        );
+        const stringRep = newArr.join(",").replaceAll(",", "+");
+        const mathRep: string = sum.toString() + "=" + stringRep;
+        return mathRep;
+    } else if (addends.length === 1) {
+        const mathRep: string = addends.toString();
+        return mathRep + "=" + mathRep;
+    } else {
+        return "0=0";
     }
-
-    const sum = addends.reduce(
-        (currentTotal: number, eachNum: number) => currentTotal + eachNum,
-        0,
-    );
-
-    const stringRep = addends.map(
-        (eachNum: number): string => eachNum.toString() + "+",
-    );
-    return sum.toString() + stringRep.toString();
 }
 
 /**
