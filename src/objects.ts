@@ -45,9 +45,7 @@ export function isValid(question: Question, answer: string): boolean {
     if (question.type === "short_answer_question") {
         return answer.length > 0;
     } else {
-        return question.options.find(
-            (option: string): boolean => option === answer,
-        );
+        return question.options.includes(answer);
     }
 }
 
