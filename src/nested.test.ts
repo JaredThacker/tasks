@@ -104,6 +104,7 @@ describe("Testing the Question[] functions", () => {
         expect(getPublishedQuestions(SIMPLE_QUESTIONS_2)).toEqual(
             BACKUP_SIMPLE_QUESTIONS_2,
         );
+
         expect(getPublishedQuestions(EMPTY_QUESTIONS)).toEqual([
             {
                 id: 1,
