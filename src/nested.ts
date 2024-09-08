@@ -35,7 +35,8 @@ export function findQuestion(
 ): Question | null {
     const foundQ: Question = questions.find(
         (question: Question): boolean => question.id === id,
-    );
+    )!; //exclamation is non null assertion postfix
+
     return questions.find((question: Question): boolean => question.id === id) ?
             foundQ
         :   null;
@@ -46,7 +47,10 @@ export function findQuestion(
  * with the given `id`.
  */
 export function removeQuestion(questions: Question[], id: number): Question[] {
-    return [];
+    const newArr: Question[] = questions.filter(
+        (question: Question): boolean => question.id !== id,
+    );
+    return newArr;
 }
 
 /***
