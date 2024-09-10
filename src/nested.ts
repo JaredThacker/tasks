@@ -179,7 +179,16 @@ export function renameQuestionById(
     targetId: number,
     newName: string,
 ): Question[] {
-    return [];
+    const newList = [...questions];
+    const foundQuestion = newList.find(
+        (question: Question) => question.id === targetId,
+    );
+
+    const renamed = { ...foundQuestion, name: newName };
+
+    return questions.map((question: Question) => {
+        question === foundQuestion ? renamed : question;
+    });
 }
 
 /***
