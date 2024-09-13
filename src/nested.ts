@@ -21,10 +21,11 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
     const nonEmpty: Question[] = questions.filter(
         (question: Question): boolean =>
-            question.body !== "" &&
-            question.expected !== "" &&
-            question.options.length !== 0,
+            (question.body !== "" || question.expected !== "") &&
+            (question.options.length !== 0 ||
+                question.type === "short_answer_question"),
     );
+
     return nonEmpty;
 }
 
