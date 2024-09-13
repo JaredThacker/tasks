@@ -183,12 +183,8 @@ export function renameQuestionById(
         (question: Question) => question.id === targetId,
     );
 
-    console.log(foundQuestion);
-
     const renamed = { ...foundQuestion };
     renamed.name = newName;
-
-    console.log(renamed);
 
     const newQ: Question[] = questions.map((question: Question): Question => {
         return question === foundQuestion ? (renamed as Question) : question;
@@ -209,7 +205,16 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType,
 ): Question[] {
-    return [];
+    const foundQ = questions.find((question) => question.id === targetId);
+    const newQType = { ...foundQ };
+    newQType.type = newQuestionType;
+    if (newQType.type === "short_answer_question") {
+        newQType.options = [];
+    }
+    const newQ = questions.map((question) => {
+        return question === foundQ ? (newQType as Question) : question;
+    });
+    return newQ;
 }
 
 /**
