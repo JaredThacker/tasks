@@ -236,6 +236,25 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
+    // const foundQuestion = questions.find(
+    //     (question) => question.id === targetId,
+    // );
+
+    // const duplicate = { ...foundQuestion } as Question;
+
+    // const newArray = questions.map((question) => question);
+
+    // if (targetOptionIndex !== -1) {
+    //     duplicate.options.splice(targetOptionIndex - 1, 1, newOption);
+    // } else {
+    //     duplicate.options.push(newOption);
+    // }
+
+    // const copied = newArray.map((question) => {
+    //     return question.id === targetId ? duplicate : question;
+    // });
+
+    // return copied;
     return [];
 }
 
