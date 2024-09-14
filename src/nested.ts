@@ -236,23 +236,26 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
-    const foundQuestion = questions.find(
-        (question) => question.id === targetId,
-    ) as any as Question;
+    // const foundQuestion = questions.find(
+    //     (question) => question.id === targetId,
+    // );
 
-    const newArray = questions.map((question) => question);
+    // const duplicate = { ...foundQuestion } as Question;
 
-    // if (targetOptionIndex === -1) {
-    //     foundQuestion.options.push(newOption);
+    // const newArray = questions.map((question) => question);
+
+    // if (targetOptionIndex !== -1) {
+    //     duplicate.options.splice(targetOptionIndex - 1, 1, newOption);
     // } else {
-    //     foundQuestion.options.splice(targetOptionIndex, 1, newOption);
+    //     duplicate.options.push(newOption);
     // }
 
-    const copied = newArray.map((question) => {
-        return question.id === targetId ? foundQuestion : question;
-    });
+    // const copied = newArray.map((question) => {
+    //     return question.id === targetId ? duplicate : question;
+    // });
 
-    return copied;
+    // return copied;
+    return [];
 }
 
 /***
