@@ -12,5 +12,6 @@ export function d6(): number {
 }
 
 export function TwoDice(): React.JSX.Element {
-    return <div>Two Dice</div>;
+    useState();
+    return <Button>Two Dice</Button>;
 }
