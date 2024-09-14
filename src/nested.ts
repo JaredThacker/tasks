@@ -236,7 +236,23 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
-    return [];
+    const foundQuestion = questions.find(
+        (question) => question.id === targetId,
+    ) as any as Question;
+
+    const newArray = questions.map((question) => question);
+
+    // if (targetOptionIndex === -1) {
+    //     foundQuestion.options.push(newOption);
+    // } else {
+    //     foundQuestion.options.splice(targetOptionIndex, 1, newOption);
+    // }
+
+    const copied = newArray.map((question) => {
+        return question.id === targetId ? foundQuestion : question;
+    });
+
+    return copied;
 }
 
 /***
