@@ -236,26 +236,34 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
-    // const foundQuestion = questions.find(
-    //     (question) => question.id === targetId,
-    // );
+    const newArray = questions.map((question) => {
+        //map to new array to avoid mutating original
 
-    // const duplicate = { ...foundQuestion } as Question;
+        if (question.id === targetId) {
+            // if ids match, create a new options array within question thru spread to avoid mutating original
 
-    // const newArray = questions.map((question) => question);
+            const newOptionArray = [...question.options];
 
-    // if (targetOptionIndex !== -1) {
-    //     duplicate.options.splice(targetOptionIndex - 1, 1, newOption);
-    // } else {
-    //     duplicate.options.push(newOption);
-    // }
+            //follow instructions in these conditionals
 
-    // const copied = newArray.map((question) => {
-    //     return question.id === targetId ? duplicate : question;
-    // });
+            if (targetOptionIndex === -1) {
+                newOptionArray.push(newOption);
+            } else {
+                newOptionArray[targetOptionIndex] = newOption;
+            }
 
-    // return copied;
-    return [];
+            //after creating newOptionArray, create a new question thru spread and mutate options array into newOptionArray
+            // avoids mutating original cuz this is a new object and new array
+
+            return { ...question, options: newOptionArray };
+        }
+
+        // return question as-is if id isnt target id
+
+        return question;
+    });
+
+    return newArray;
 }
 
 /***
