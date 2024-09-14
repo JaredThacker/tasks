@@ -21,7 +21,11 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
     const nonEmpty: Question[] = questions.filter(
         (question: Question): boolean =>
+            // if question body OR question expected is not empty string then it is not empty
+
             (question.body !== "" || question.expected !== "") &&
+            //AND && if options length is not 0 OR question is short answer it must not be an empty question either
+            //will check options length not zero first if tht is false, n it moves to short answer being true, it must not be empty
             (question.options.length !== 0 ||
                 question.type === "short_answer_question"),
     );
