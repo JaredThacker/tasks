@@ -8,13 +8,28 @@ export function ChangeType(): React.JSX.Element {
     );
 
     function changeQuestionType(): void {
-        const newQType = "short_answer_question";
         if (questionType === "short_answer_question") {
-            setQuestionType(newQType);
-        } else {
             setQuestionType("multiple_choice_question");
+        } else {
+            setQuestionType("short_answer_question");
         }
     }
 
-    return <Button onClick={() => changeQuestionType}>Change Type</Button>;
+    return (
+        <div>
+            <Button
+                onClick={() => {
+                    changeQuestionType();
+                }}
+            >
+                Change Type
+            </Button>
+            <>{questionType === "short_answer_question" && <>Short Answer</>}</>
+            <>
+                {questionType === "multiple_choice_question" && (
+                    <>Multiple Choice</>
+                )}
+            </>
+        </div>
+    );
 }
