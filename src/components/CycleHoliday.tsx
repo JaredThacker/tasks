@@ -41,6 +41,25 @@ export function CycleHoliday(): React.JSX.Element {
         }
     }
 
+    function byDate(): void {
+        if (holiday === HolidayRecord["🎄"]) {
+            setHoliday(HolidayRecord["🎆"]);
+            return;
+        } else if (holiday === HolidayRecord["🎆"]) {
+            setHoliday(HolidayRecord["💘"]);
+            return;
+        } else if (holiday === HolidayRecord["💘"]) {
+            setHoliday(HolidayRecord["🎃"]);
+            return;
+        } else if (holiday === HolidayRecord["🎃"]) {
+            setHoliday(HolidayRecord["🦃"]);
+            return;
+        } else if (holiday === HolidayRecord["🦃"]) {
+            setHoliday(HolidayRecord["🎄"]);
+            return;
+        }
+    }
+
     return (
         <>
             <Button
@@ -49,6 +68,13 @@ export function CycleHoliday(): React.JSX.Element {
                 }}
             >
                 Advance by Alphabet
+            </Button>
+            <Button
+                onClick={() => {
+                    byDate();
+                }}
+            >
+                Advance By Year
             </Button>
             <span>Holiday: {holiday}</span>
         </>
