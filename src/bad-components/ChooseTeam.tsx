@@ -14,14 +14,19 @@ export function ChooseTeam(): React.JSX.Element {
     const [allOptions, setAllOptions] = useState<string[]>(PEOPLE);
     const [team, setTeam] = useState<string[]>([]);
 
-    function chooseMember() {
+    function chooseMember(newMember: string) {
         if (!team.includes(newMember)) {
-            team.push(newMember);
+            setTeam([...team, newMember]);
         }
+
+        setAllOptions(
+            allOptions.filter((person): boolean => person !== newMember),
+        );
     }
 
     function clearTeam() {
-        team = [];
+        setAllOptions(PEOPLE);
+        setTeam([]);
     }
 
     return (
@@ -34,7 +39,7 @@ export function ChooseTeam(): React.JSX.Element {
                             Add{" "}
                             <Button
                                 onClick={() => {
-                                    chooseMember();
+                                    chooseMember(option);
                                 }}
                                 size="sm"
                             >
