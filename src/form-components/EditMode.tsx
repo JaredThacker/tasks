@@ -15,18 +15,17 @@ export function EditMode(): React.JSX.Element {
     }
 
     return (
-        <div>
+        <div data-testid="form-switch">
             <h3>Edit Mode</h3>
             <FormCheck
-                type="switch"
                 role="switch"
+                type="switch"
                 id="isEdit"
                 checked={editMode}
                 onChange={updateEditMode}
             />
             <FormCheck
                 type="checkbox"
-                role="checkbox"
                 id="isStudent"
                 checked={student}
                 onChange={updateStudentStatus}
@@ -34,7 +33,6 @@ export function EditMode(): React.JSX.Element {
             {editMode && (
                 <FormControl
                     as="textarea"
-                    role="textbox"
                     value={name}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                         setName(event.target.value);
